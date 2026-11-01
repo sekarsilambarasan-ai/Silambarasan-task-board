@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Silambarasan Task Board — your personal task and reminder assistant.">
+  <title>Silambarasan Task Board</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">✓</div>
+      <div><div class="brand-name">Silambarasan</div><div class="brand-sub">TASK BOARD</div></div>
+    </div>
+    <button id="installBtn" class="icon-btn" hidden aria-label="Install app">＋</button>
+  </header>
+
+  <main class="wrap">
+    <section class="welcome">
+      <div class="eyebrow">YOUR PERSONAL ASSISTANT</div>
+      <h1>Plan it. Do it.<br><span>Achieve it.</span></h1>
+      <p id="todayLabel"></p>
+    </section>
+
+    <section class="stats">
+      <article><span id="totalCount">0</span><small>Total tasks</small></article>
+      <article><span id="pendingCount">0</span><small>Pending</small></article>
+      <article><span id="doneCount">0</span><small>Completed</small></article>
+    </section>
+
+    <section class="panel">
+      <div class="section-head"><div><div class="eyebrow">QUICK CAPTURE</div><h2>Add a task</h2></div><span class="spark">✦</span></div>
+      <form id="taskForm">
+        <label for="taskTitle">What do you need to do?</label>
+        <input id="taskTitle" maxlength="120" placeholder="e.g. Attend preservation meeting" required>
+        <div class="form-grid">
+          <div><label for="taskDate">Due date</label><input id="taskDate" type="date"></div>
+          <div><label for="taskTime">Time</label><input id="taskTime" type="time"></div>
+        </div>
+        <div class="form-grid">
+          <div><label for="taskCategory">Category</label>
+            <select id="taskCategory"><option>Work</option><option>Personal</option><option>Family</option><option>Finance</option><option>Health</option><option>Other</option></select>
+          </div>
+          <div><label for="taskPriority">Priority</label>
+            <select id="taskPriority"><option value="Medium">Medium</option><option value="High">High</option><option value="Low">Low</option></select>
+          </div>
+        </div>
+        <label for="taskNotes">Notes (optional)</label>
+        <textarea id="taskNotes" rows="2" maxlength="500" placeholder="Add any details..."></textarea>
+        <button class="primary" type="submit">＋ Add to my task board</button>
+      </form>
+    </section>
+
+    <section class="task-section">
+      <div class="section-head"><div><div class="eyebrow">STAY IN CONTROL</div><h2>My tasks</h2></div>
+        <button id="notifyBtn" class="secondary small">Enable alerts</button>
+      </div>
+      <div class="filters" role="group" aria-label="Filter tasks">
+        <button class="filter active" data-filter="All">All</button>
+        <button class="filter" data-filter="Pending">Pending</button>
+        <button class="filter" data-filter="Completed">Completed</button>
+      </div>
+      <div id="taskList" class="task-list"></div>
+      <div id="emptyState" class="empty"><div class="empty-icon">☀</div><strong>Your task board is clear</strong><p>Add your first task above.</p></div>
+    </section>
+    <p class="privacy-note">🔒 Your tasks are stored on this device. This first version does not upload your personal data.</p>
+  </main>
+
+  <nav class="bottom-nav">
+    <a class="selected" href="#top" aria-label="Home">⌂<small>Home</small></a>
+    <a href="#taskForm" aria-label="Add task">＋<small>Add task</small></a>
+    <button id="exportBtn" aria-label="Backup tasks">⇩<small>Backup</small></button>
+  </nav>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
